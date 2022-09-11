@@ -10,10 +10,10 @@
 ## Presentation (ui) Layer:
 
 * The Presentation layer contains UI releated feature packages that have:
- * Activities/Fragments/Dialogs
- * Adapter
- * UI-States
- * ViewModel
+  * Activities/Fragments/Dialogs
+  * Adapter
+  * UI-States
+  * ViewModel
 
 * The UI-States holds the states according to which the data needs to be displayed on the UI.
  * Eg: Loading, Error, Success (data state)
