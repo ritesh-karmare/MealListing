@@ -62,4 +62,4 @@
 
 ## Package Structure
 
-![](/images/package_structure.png)
+![<img style="float: center;" src="/images/package_structure.png" width='100' height='200'>](/images/package_structure.png)
