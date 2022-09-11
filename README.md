@@ -52,7 +52,7 @@
   * Fetch the data from data source (API)
   * Pass the result to UseCase in Domain layer.
 
-#### Besides the above layers, we can also have other packages like:
+## Besides the above layers, we can also have other packages like:
 
 * commons / utils : contains classes for common functionalities:
   * DateTimeUtil
