@@ -62,4 +62,4 @@
 
 ## Package Structure
 
-<img style="float: center;" src="/images/package_structure.png" width='300' height='500'>
+<img style="float: center;" src="/images/package_structure.png" width='250' height='500'>
