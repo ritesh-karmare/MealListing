@@ -7,9 +7,9 @@
 
 ![](/images/clean_architecture.png)
 
-## Presentation (ui) Layer:
+## Presentation (ui) Layer
 
-* The Presentation layer contains UI releated feature packages that have:
+* The Presentation layer contains UI related feature packages that have:
   * Activities/Fragments/Dialogs
   * Adapter
   * UI-States
@@ -22,7 +22,7 @@
   * Communicates with the UseCases present in Domain layer to fetch the data.
   * Update the UI with the fetched data.
 
-## Domain Layer:
+## Domain Layer
 * The Domain layer contains the business logic. It has following packages:
   * Model
   * Repository
@@ -36,7 +36,7 @@
   * Fetches data via Repository’s implementation present in Data layer.
   * Then, the fetched data is passed to Presentation layer’s ViewModel via coroutine or flow.
 
-## Data Layer:
+## Data Layer
 
 * The Data layer contains functionality related to fetching data from data source. It contains following packages:
   * Model
@@ -59,3 +59,7 @@
   * Constants, etc...
 
 * hilt : contains implementation of Hilt Modules
+
+## Package Structure
+
+![](/images/package_structure.png)
