@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.sample.meallisting.data.remote.Resource
 import com.sample.meallisting.domain.usecase.ListMealsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
@@ -31,8 +32,11 @@ class MealListingViewModel @Inject constructor(private val listMealsUseCase: Lis
                     is Resource.Error ->
                         _mealLiveData.value = MealListState(error = it.errorMessage)
 
-                    is Resource.Success ->
+                    is Resource.Success -> {
+                        // 10 sec delay to view progress loading state
+                        delay(5000)
                         _mealLiveData.value = MealListState(mealList = it.value)
+                    }
                 }
 
             }.launchIn(viewModelScope)
