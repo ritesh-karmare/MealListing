@@ -1,27 +1,29 @@
 package com.sample.meallisting.ui.mealListing
 
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Divider
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -82,7 +84,7 @@ fun DisplayProgressBar() {
     ) {
         CircularProgressIndicator(modifier = Modifier.size(48.dp))
         Spacer(modifier = Modifier.height(8.dp))
-        Text(text = "Loading", fontSize = 16.sp, color = Color.Red)
+        Text(text = "Loading", fontSize = 16.sp, color = Color.Black)
     }
 }
 
@@ -95,7 +97,7 @@ fun MealList(mealList: List<Meal>) {
             key = { mealList[it].id },
             itemContent = { index ->
                 MealCard(meal = mealList[index])
-                Divider(color = Color.LightGray)
+                //Divider(color = Color.LightGray)
 
             }
         )
@@ -107,36 +109,42 @@ fun MealCard(meal: Meal) {
 
     val context = LocalContext.current
 
-    Row(
+    Card(
         modifier = Modifier
-            .padding(all = 16.dp)
-            .fillMaxWidth()
+            .padding(8.dp)
             .clickable {
                 Toast
                     .makeText(context, meal.mealName, Toast.LENGTH_LONG)
                     .show()
             },
-        verticalAlignment = Alignment.CenterVertically
+        colors = CardDefaults.cardColors(Color.White),
+        shape = RoundedCornerShape(8.dp),
+        elevation = CardDefaults.cardElevation(4.dp)
     ) {
 
-        AsyncImage(
-            model = ImageRequest.Builder(LocalContext.current)
-                .data(meal.mealThumb)
-                .build(),
-            placeholder = painterResource(R.drawable.ic_launcher_foreground),
-            contentDescription = meal.mealName,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .size(48.dp)
-                .clip(RoundedCornerShape(4.dp))
-        )
+        Row(modifier = Modifier
+            .padding(all = 8.dp)
+            .fillMaxWidth()) {
 
-        Spacer(modifier = Modifier.width(12.dp))
+            AsyncImage(
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(meal.mealThumb)
+                    .build(),
+                placeholder = painterResource(R.drawable.ic_launcher_foreground),
+                contentDescription = meal.mealName,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .size(48.dp)
+                    .clip(RoundedCornerShape(4.dp))
+            )
 
-        Column {
-            Text(text = meal.mealName, fontSize = 18.sp, maxLines = 1)
-            Spacer(modifier = Modifier.height(4.dp))
-            Text(text = "#${meal.id}", fontSize = 14.sp)
+            Spacer(modifier = Modifier.width(12.dp))
+
+            Column {
+                Text(text = meal.mealName, fontSize = 18.sp, maxLines = 1)
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(text = "#${meal.id}", fontSize = 14.sp)
+            }
         }
     }
 }
